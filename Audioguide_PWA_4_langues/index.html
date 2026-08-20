@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#222222">
+<link rel="manifest" href="manifest.json">
+<title>Audioguide</title>
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background: #f2f2f2;
+    margin: 0;
+    text-align: center;
+    color: #222;
+}
+
+header {
+    background: #222;
+    color: white;
+    padding: 25px 10px;
+}
+
+h1 {
+    margin: 0;
+    font-size: 32px;
+}
+
+.sous-titre {
+    margin-top: 8px;
+    font-size: 18px;
+}
+
+.langues {
+    max-width: 650px;
+    margin: 35px auto;
+    padding: 15px;
+}
+
+.langue {
+    display: block;
+    background: white;
+    margin-bottom: 20px;
+    padding: 25px;
+    border-radius: 15px;
+    text-decoration: none;
+    color: #222;
+    font-size: 28px;
+    font-weight: bold;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.18);
+}
+
+.langue:active {
+    background: #ddd;
+}
+
+.drapeau {
+    display: block;
+    font-size: 70px;
+    margin-bottom: 8px;
+}
+</style>
+
+</head>
+
+<body>
+
+<header>
+    <h1>Audioguide</h1>
+    <div class="sous-titre">Choisissez la langue</div>
+</header>
+
+<div class="langues">
+
+    <a class="langue" href="anglais.html">
+        <span class="drapeau">🇬🇧</span>
+        English
+    </a>
+
+    <a class="langue" href="neerlandais.html">
+        <span class="drapeau">🇳🇱</span>
+        Nederlands
+    </a>
+
+    <a class="langue" href="allemand.html">
+        <span class="drapeau">🇩🇪</span>
+        Deutsch
+    </a>
+
+    <a class="langue" href="espagnol.html">
+        <span class="drapeau">🇪🇸</span>
+        Español
+    </a>
+
+</div>
+
+<script>
+if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => {
+        navigator.serviceWorker.register("./service-worker.js");
+    });
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,25 @@
+AUDIOGUIDE PWA - MODE D'EMPLOI
+
+1. Placez vos fichiers audio dans les quatre dossiers :
+   anglais/01.mp3 à 08.mp3
+   neerlandais/01.mp3 à 08.mp3
+   allemand/01.mp3 à 08.mp3
+   espagnol/01.mp3 à 08.mp3
+
+2. Déposez tout le contenu de ce dossier dans un dépôt GitHub.
+
+3. Activez GitHub Pages :
+   Settings > Pages > Deploy from a branch > main > /root
+
+4. Ouvrez l'adresse GitHub Pages sur la tablette une première fois avec Internet.
+
+5. Attendez quelques instants pour que les fichiers soient mis en cache.
+
+6. Dans Chrome/Edge Android, choisissez "Ajouter à l'écran d'accueil" ou "Installer l'application".
+
+7. Testez ensuite en mode avion + Bluetooth pour vérifier que les 32 pistes audio sont bien disponibles hors ligne.
+
+IMPORTANT :
+Si vous modifiez des fichiers et souhaitez forcer toutes les tablettes à récupérer la nouvelle version,
+modifiez CACHE_NAME dans service-worker.js, par exemple :
+audioguide-v1 -> audioguide-v2

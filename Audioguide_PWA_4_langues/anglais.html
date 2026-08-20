@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#222222">
+<link rel="manifest" href="manifest.json">
+
+<title>Audioguide - English</title>
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background: #f2f2f2;
+    margin: 0;
+    padding-bottom: 145px;
+    color: #222;
+}
+
+header {
+    background: #222;
+    color: white;
+    text-align: center;
+    padding: 12px;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.drapeau {
+    font-size: 45px;
+}
+
+h1 {
+    margin: 2px;
+    font-size: 22px;
+}
+
+.retour {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+.etapes {
+    padding: 15px;
+    max-width: 750px;
+    margin: auto;
+}
+
+.etape {
+    display: block;
+    width: 100%;
+    margin-bottom: 12px;
+    padding: 18px 10px;
+    font-size: 27px;
+    font-weight: bold;
+    border: none;
+    border-radius: 12px;
+    background: white;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.18);
+}
+
+.consigne {
+    display: block;
+    margin-top: 6px;
+    font-size: 17px;
+    font-weight: normal;
+}
+
+.etape:active {
+    background: #ccc;
+}
+
+.etape.actif {
+    background: #d5d5d5;
+}
+
+#lecteur {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #222;
+    color: white;
+    padding: 10px 15px;
+    z-index: 20;
+}
+
+#titre {
+    text-align: center;
+    font-size: 18px;
+    margin-bottom: 7px;
+}
+
+audio {
+    width: 100%;
+}
+</style>
+
+</head>
+
+<body>
+
+<header>
+    <div class="drapeau">🇬🇧</div>
+    <h1>English</h1>
+    <a class="retour" href="index.html">← Changer de langue</a>
+</header>
+
+<div class="etapes">
+
+<button class="etape" onclick="jouer(1)">
+    ÉTAPE 1
+    <span class="consigne">Au départ</span>
+</button>
+
+<button class="etape" onclick="jouer(2)">
+    ÉTAPE 2
+    <span class="consigne">Après le passage sous la route</span>
+</button>
+
+<button class="etape" onclick="jouer(3)">
+    ÉTAPE 3
+    <span class="consigne">Dans la petite Meer, avant la porte d'eau</span>
+</button>
+
+<button class="etape" onclick="jouer(4)">
+    ÉTAPE 4
+    <span class="consigne">Dans le polder</span>
+</button>
+
+<button class="etape" onclick="jouer(5)">
+    ÉTAPE 5
+    <span class="consigne">Face à la ville</span>
+</button>
+
+<button class="etape" onclick="jouer(6)">
+    ÉTAPE 6
+    <span class="consigne">Dans la Grande Meer</span>
+</button>
+
+<button class="etape" onclick="jouer(7)">
+    ÉTAPE 7
+    <span class="consigne">Dans le Keteland</span>
+</button>
+
+<button class="etape" onclick="jouer(8)">
+    ÉTAPE 8
+    <span class="consigne">Avant le passage du pont sous la route, chemin du retour</span>
+</button>
+
+</div>
+
+<div id="lecteur">
+    <div id="titre">Choisissez une étape</div>
+    <audio id="audio" controls></audio>
+</div>
+
+<script>
+const audio = document.getElementById("audio");
+const titre = document.getElementById("titre");
+const boutons = document.querySelectorAll(".etape");
+
+function jouer(numero) {
+    audio.pause();
+
+    audio.src =
+        "anglais/" +
+        String(numero).padStart(2, "0") +
+        ".mp3";
+
+    titre.textContent = "Étape " + numero;
+
+    boutons.forEach(b => b.classList.remove("actif"));
+    boutons[numero - 1].classList.add("actif");
+
+    audio.play();
+}
+
+audio.addEventListener("ended", function() {
+    audio.pause();
+    audio.currentTime = 0;
+    titre.textContent = "Étape terminée";
+});
+
+if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => {
+        navigator.serviceWorker.register("./service-worker.js");
+    });
+}
+</script>
+
+</body>
+</html>
